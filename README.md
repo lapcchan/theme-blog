@@ -1,5 +1,6 @@
 # theme-blog
-push some old demo of vue
+
+old version for reference only, not going to update for vulnerabilities 
 
 ## Project setup
 ```
