@@ -10,10 +10,12 @@ export default new Vuex.Store({
     items: [
       {
         text: 'Home',
-        to: '/'
+        to: '/',
+        href: '#feed'
       },
       {
         text: 'About',
+        to: '/',
         href: '#about'
       }
     ]
@@ -34,6 +36,7 @@ export default new Vuex.Store({
           text,
           to: `/category/${text}`
         })
+        
       }
 
       return categories.sort().slice(0, 4)

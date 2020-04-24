@@ -45,7 +45,7 @@
           class="mr-0"
           title="Next page"
           square
-          @click="page++"
+          @click="nextpage()"
         >
           <v-icon>mdi-chevron-right</v-icon>
         </base-btn>
@@ -82,6 +82,13 @@
         const stop = this.page * 11
 
         return this.articles.slice(start, stop)
+      }
+    },
+
+    methods: {
+      nextpage() {
+          console.log("nextpage");
+          this.page += 1 
       }
     },
 

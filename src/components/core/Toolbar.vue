@@ -27,7 +27,7 @@
           :to="link.to"
           class="ml-0 hidden-sm-and-down"
           flat
-          @click="onClick($event, item)"
+          @click="onClick($event, link)"
         >
           {{ link.text }}
         </v-btn>
@@ -51,20 +51,49 @@
     mapMutations
   } from 'vuex'
 
+
   export default {
     computed: {
-      ...mapGetters(['links'])
+        // another way #1 to do it, parse the return info from store.js
+        //...mapGetters(["links"])
+        links() {
+            // another way #2 to do it. also return from store.js
+            //var results = this.$store.getters.links;
+            var results = [
+                {text:"Home",to:"/", href:"#home"},
+                {text:"About",to:"/", href:"#about"},
+                {text:"Travel",to:"/category/Travel"},
+                {text:"Leisure",to:"/category/Leisure"},
+                {text:"Political",to:"/category/Political"},
+                {text:"Cooking",to:"/category/Cooking"},
+                ]
+            return results
+        }
+    },
+
+    mounted() {
+        console.log("drawer",this.$store.state.toggleDrawer);
+        console.log("state",this.$store.state);
     },
 
     methods: {
-      ...mapMutations(['toggleDrawer']),
+      toggleDrawer () {
+        console.log("toggle");
+        this.$store.state.drawer = !this.$store.state.drawer;
+        console.log(this.$store.state.drawer);
+      },
+      // alternative way to do in store.js, mutation function
+      //...mapMutations(['toggleDrawer']),
+
       onClick (e, item) {
         e.stopPropagation()
 
-        if (item.to || !item.href) return
+        console.log("item",item);
+        //if (item.to || !item.href) return
 
-        this.$vuetify.goTo(item.href)
+        if (item.href) this.$vuetify.goTo(item.href)
       }
     }
   }
+  console.log(this);
 </script>
